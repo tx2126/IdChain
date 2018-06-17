@@ -7,25 +7,26 @@
 
 #include <cstdint>
 #include <iostream>
+#include <string>
 
 class Block {
 public:
-    string sPrevHash;
+    std::string sPrevHash;
 
-    Block(uint32_t nIndexIn, const string &sDataIn);
+    Block(uint32_t nIndexIn, const std::string &sDataIn);
 
-    string GetHash();
+    std::string GetHash();
 
     void MineBlock(uint32_t nDifficulty);
 
 private:
     uint32_t nIndex_;
     int64_t nNonce_;
-    string sData_;
-    string sHash_;
+    std::string sData_;
+    std::string sHash_;
     time_t tTime_;
 
-    string CalculateHash() const;
+    std::string CalculateHash() const;
 };
 
 #endif //IDCHAIN_BLOCK_H
