@@ -2,6 +2,7 @@
 // Created by Alex Xia on 6/16/18.
 //
 
+#include <sstream>
 #include "Block.h"
 #include "sha256.h"
 
@@ -31,4 +32,10 @@ void Block::MineBlock(uint32_t nDifficulty) {
     } while (sHash_.substr(0, nDifficulty) != str);
 
     std::cout << "Block mined: " << sHash_ << std::endl;
+}
+
+inline string Block::CalculateHash() const {
+    std::stringstream ss;
+    ss << nIndex_ << tTime_ << sData_ << nNonce_ << sPrevHash;
+    return sha256(ss.str());
 }
